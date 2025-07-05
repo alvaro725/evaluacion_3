@@ -4,7 +4,7 @@ import { useState } from 'react';
 export default function Home() {
   const [persona, setPersona] = useState({
     nombre: '',
-    edad: '',
+    edad: 0,
   });
 
   const [personas, setPersonas] = useState([]);
@@ -23,16 +23,16 @@ export default function Home() {
         onChange={(e) => setPersona({ ...persona, nombre: e.target.value })}
       />
       <input 
-        type="text" 
+        type="number" 
         placeholder="Edad" 
         value={persona.edad} 
-        onChange={(e) => setPersona({ ...persona, edad: e.target.value })}
+        onChange={(e) => setPersona({ ...persona, edad: parseInt(e.target.value) })}
       />
       <button onClick={handleSubmit}>Agregar</button>
 
       <ul>
-        {personas.map((p) => (
-          <li>{p.nombre} - {p.edad}</li>
+        {personas.map((p, i) => (
+          <li key={i}>{p.nombre} - {p.edad}</li>
         ))}
       </ul>
     </div>
